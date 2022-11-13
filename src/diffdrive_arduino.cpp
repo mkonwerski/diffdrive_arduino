@@ -52,7 +52,7 @@ return_type DiffDriveArduino::configure(const hardware_interface::HardwareInfo &
   RCLCPP_INFO(logger_, "pigpio_start: ---------------------------------------1");
   if (pi_ >= 0)
     {
-      RCLCPP_INFO(logger_, "pigpio_start: ---------------------------------------"2);
+      RCLCPP_INFO(logger_, "pigpio_start: ---------------------------------------2");
       right_.setPin(pi_, 17, 18);
       RCLCPP_INFO(logger_, "pigpio_start: ---------------------------------------3");
       left_.setPin(pi_, 27, 22);
@@ -118,6 +118,8 @@ return_type DiffDriveArduino::stop()
 {
   //----------- my code -----------------------------------
   RCLCPP_INFO(logger_, "stop: -----STOP-----");
+  HBridge right_;
+  HBridge left_;
   right_.drive(0);
   left_.drive(0);
   return return_type::OK; 
@@ -134,6 +136,8 @@ hardware_interface::return_type DiffDriveArduino::write()
 {
   //----------- my code -----------------------------------
   RCLCPP_INFO(logger_, "write: -----GO!-----");
+  HBridge right_;
+  HBridge left_;
   right_.drive(255);
   left_.drive(255);
   return return_type::OK; 
