@@ -44,6 +44,14 @@ pluginlib_export_plugin_description_file(hardware_interface robot_hardware.xml)
 add_library(fake_robot SHARED src/fake_robot.cpp src/wheel.cpp)
 set_property(TARGET fake_robot PROPERTY POSITION_INDEPENDENT_CODE ON)
 
+target_link_libraries(
+  diffdrive_arduino
+  ${pigpio_LIBRARY} 
+  ${pigpiod_if_LIBRARY} 
+  ${pigpiod_if2_LIBRARY}
+  pigpiod_if2
+)
+
 target_include_directories(
   fake_robot
   PRIVATE
@@ -63,6 +71,7 @@ ament_target_dependencies(
 pluginlib_export_plugin_description_file(hardware_interface fake_robot_hardware.xml)
 
 target_link_libraries(
+  diffdrive_arduino
   ${pigpio_LIBRARY} 
   ${pigpiod_if_LIBRARY} 
   ${pigpiod_if2_LIBRARY}
